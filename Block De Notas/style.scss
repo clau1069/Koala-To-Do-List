@@ -1,0 +1,385 @@
+  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700&display=swap');
+  /* font-family: 'Heebo', sans-serif
+Heebo: Variables: Regular 400 | Bold 700*/
+  //COLORES
+  $primary: #8B80EF;
+  $primaryLight: #B6B0FB;
+  $primaryLighter: #dfdcfe;
+  $primaryLabel: #ECEAFE;
+  $danger: #ff8a8a;
+
+  $background: #f5f4ff;
+
+  //coloresFuentes
+  $font: #201d3a;
+  $fontDisabled: #464453;
+  $fontLabel: #807f89;
+  $fontLabelLighter: #aaa6c4;
+  $fontLabelDisabled: #6f6ba6;
+  $fontForm: #A8A5C6;
+
+  //WEIGTHs
+  $regular: 400;
+  $semibold: 600;
+  $bold: 700;
+
+  //OTRAS VARIABLES
+  $bordesApp: 15px;
+
+  @mixin shadow() {
+      -webkit-box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.17);
+      -moz-box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.17);
+      box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.17);
+  }
+
+  @mixin inputText() {
+      appearance: none;
+      width: 100%;
+      border: none;
+      padding: 10px 15px;
+      font-family: 'Heebo', sans-serif;
+      border-radius: 24px;
+      color: $font;
+
+      &::placeholder {
+          font-style: italic;
+          color: $fontLabelLighter;
+      }
+  }
+
+  @mixin btn {
+      padding: 6px 6px;
+      appearance: none;
+      font-family: 'Heebo', sans-serif;
+      font-weight: $regular;
+      border-radius: 20px;
+      border: none;
+
+
+  }
+
+
+
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      color: $font;
+      //bottom sheet crear nuevo
+
+      body {
+          background-color: $background;
+          font-family: 'Heebo', sans-serif;
+          font-weight: $regular;
+          height: 100vh;
+          max-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          overflow-y: hidden;
+
+          //HEADER
+          header {
+              padding: $bordesApp;
+              display: flex;
+              align-items: center;
+              background-color: #dfdcfe;
+              border-bottom: 1px solid #d5d4e7;
+              @include shadow();
+
+              .icono-koala {
+                  width: 30px;
+                  height: 30px;
+                  margin-right: 7px;
+              }
+
+              h1 {
+                  font-size: larger;
+                  color: $primary;
+              }
+          }
+
+          //MAIN 
+          main {
+              flex-grow: 1;
+              margin: $bordesApp;
+              margin-top: 40px;
+
+              background-color: #c4ae85;
+             display: grid;
+             grid-template-rows: 10% 90%;
+
+
+              //FORM DE BÚSQUEDA
+              .contenedor-search {
+                
+                  margin-left: 20px;
+                  margin-right: 20px;
+                  position: relative;
+                  top: 0;
+                  left: 0;
+
+                  #input-search {
+                      @include inputText();
+                      background-color: $primaryLighter;
+                  }
+
+                  .search-button-icon {
+                      position: absolute;
+                      top: 0;
+                      right: 0;
+                      margin-right: 10px;
+                      width: 20px;
+                      height: 100%;
+                      border: none;
+                      background: url(/assets/icons8-búsqueda-30.png);
+                      background-position: center;
+                      background-size: contain;
+                      background-repeat: no-repeat;
+                  }
+
+              }
+
+              .contenedor {
+                flex-grow: 1;
+                  background-color: #52669d;
+                  min-height: 300px;
+                  overflow-y: auto;
+                  .cuadraditos{
+                    background-color: #464453;
+                    width: 20px;
+                    height: 20px;
+                    margin-bottom: 50px;
+                  }
+
+              }
+              #contenedor-notas {
+                display: none;
+              }
+              /* //CONTENEDOR DE NOTAS
+              #contenedor-notas {
+                  flex-grow: 1;
+                  overflow-y: auto;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px 20px;
+                  background-color: #6f6ba6;
+
+                  .note {
+                      width: 100%;
+                      max-width: 400px;
+                      padding: 15px;
+                      border-radius: 18px;
+                      display: flex;
+                      height: max-content;
+
+                      .title {
+                          font-size: smaller;
+                          font-weight: $semibold;
+                      }
+
+                      .content {
+                          font-size: smaller;
+                          font-weight: $regular;
+                          color: $fontLabel;
+                      }
+
+                      //estilos cuando es NO EDITABLE
+                      &[data-editable="false"] {
+                          justify-content: space-between;
+                          align-items: center;
+                          background-color: $primaryLighter;
+
+                          [type="checkbox"] {
+                              appearance: none;
+                              cursor: pointer;
+                              width: 20px;
+                              height: 20px;
+
+                              border: 1px solid $primaryLight;
+                              border-radius: 3px;
+                              background-color: #fff;
+                              background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+
+                              transition: background-color 0.3s ease-in-out;
+
+                              &:checked {
+                                  background-color: #7668f6;
+                              }
+                          }
+                      }
+
+                      //estilos cuando es EDITABLE
+                      &[data-editable="true"] {
+                          background-color: $primaryLight;
+                          flex-direction: column;
+                          gap: 10px;
+
+                          //inputs
+                          [type="text"] {
+                              @include inputText();
+                              background-color: $primaryLighter;
+                          }
+
+                          //botones
+                          div.buttons {
+                              display: flex;
+                              justify-content: space-between;
+
+                              &>.btn {
+                                  @include btn(); //incluye todas las propiedades del mixin btn
+                                  display: flex;
+                                  justify-content: center;
+                                  align-items: center;
+                                  gap: 10px;
+
+                                  &>.icon {
+                                      display: block;
+                                      width: 23px;
+                                      height: 23px;
+                                      background-size: contain;
+                                      background-repeat: no-repeat;
+
+                                  }
+
+                                  &.remove {
+                                      background-color: $danger;
+
+                                      .icon.remove {
+                                          background-image: url(/assets/icons8-basura-48.png);
+                                      }
+                                  }
+
+                                  &.save {
+                                      padding-right: 15px;
+                                      padding-left: 15px;
+                                      background-color: $primary;
+                                      color: white;
+
+                                      .icon.save {
+                                          background-image: url(/assets/icons8-guardar-24.png);
+                                      }
+                                  }
+                              }
+
+                          }
+                      }
+
+                      //estilos cuando la task está realizada
+                      &[data-checked="true"] {
+                          background-color: $primaryLight;
+
+                          .title {
+                              text-decoration: line-through;
+                              color: $fontDisabled !important;
+                          }
+
+                          .content {
+                              text-decoration: line-through;
+                              color: $fontLabelDisabled;
+                          }
+
+                      }
+
+
+                  }
+              } */
+
+
+              //BOTÓN NUEVO
+              #btn-flotante-crear {
+                  position: absolute;
+                  bottom: 20px;
+                  right: 20px;
+                  @include btn();
+                  width: 60px;
+                  height: 60px;
+                  border-radius: 60px;
+                  background: url(/assets/icons8-más-48.png);
+                  background-color: $primary;
+                  background-position: center;
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                  @include shadow();
+
+                  &.disabled {
+                      display: none;
+                  }
+              }
+          }
+
+
+
+          //BOTTOM SHEET
+          #bottom-sheet {
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 100%;
+              background-color: $primaryLight;
+              border-radius: 12px 12px 0 0;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              padding: 20px;
+              gap: 10px;
+
+              &>* {
+                  appearance: none;
+              }
+
+              .icon-close {
+                  width: 20px;
+                  height: 20px;
+                  margin-left: auto;
+                  background: url(/assets/icons8-cerrar-30.png);
+                  background-position: center;
+                  background-size: contain
+              }
+
+              [type="text"] {
+                  @include inputText();
+                  background-color: $primaryLighter;
+                  color: $font;
+
+                  &#input-create-note-title {
+                      font-size: smaller;
+                      font-weight: $semibold;
+                  }
+
+                  &#input-create-note-content {
+                      font-size: smaller;
+                      font-weight: $regular;
+                      color: $fontLabel;
+                  }
+              }
+
+              #btn-create-new {
+                  @include btn();
+                  display: flex;
+                  background-color: $primary;
+                  color: white;
+                  width: max-content;
+                  padding-left: 15px;
+                  padding-right: 15px;
+
+                  .icon-crear {
+                      width: 20px;
+                      height: 20px;
+                      background-color: white;
+                      background: url(/assets/icons8-más-48.png);
+                      background-position: center;
+                      background-size: contain;
+                  }
+              }
+
+              &.disabled {
+                  display: none;
+              }
+          }
+      }
+
+  }
+
+  .disabled {
+      display: none;
+  }
