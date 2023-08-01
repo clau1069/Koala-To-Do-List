@@ -81,21 +81,55 @@ body main .contenedor-scroll {
   flex-grow: 1;
   position: relative;
 }
-body main .contenedor-scroll .contenedor {
+body main .contenedor-scroll #contenedor-notas {
   position: absolute;
   height: 100%;
   width: 100%;
-  background-color: #d4852c;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
-body main .contenedor-scroll .contenedor .cuadraditos {
-  background-color: #464453;
+body main .contenedor-scroll #contenedor-notas .note {
+  background-color: #dfdcfe;
+  border-radius: 15px;
+  padding: 15px;
+}
+body main .contenedor-scroll #contenedor-notas .note h2 {
+  color: #8B80EF;
+}
+body main .contenedor-scroll #contenedor-notas .note p {
+  color: #464453;
+}
+body main .contenedor-scroll #contenedor-notas .note div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body main .contenedor-scroll #contenedor-notas .note input[type=checkbox] {
+  appearance: none;
+  cursor: pointer;
   width: 20px;
   height: 20px;
-  margin-bottom: 5px;
+  border: 2px solid #A8A5C6;
+  border-radius: 3px;
+  background-color: #d4d1ee;
+  background-position: center;
+  background-size: cover;
 }
-body main #contenedor-notas {
-  display: none;
+body main .contenedor-scroll #contenedor-notas .note input[type=checkbox]:checked {
+  border: 2px solid #8B80EF;
+  background-color: #8B80EF;
+  background-image: url(/assets/icons8-marca-de-verificación-64.png);
+}
+body main .contenedor-scroll #contenedor-notas .note[data-checked=true] {
+  background-color: #B6B0FB;
+}
+body main .contenedor-scroll #contenedor-notas .note[data-checked=true] h2, body main .contenedor-scroll #contenedor-notas .note[data-checked=true] p {
+  text-decoration: line-through;
+}
+body main .contenedor-scroll #contenedor-notas .note[data-checked=true] h2 {
+  color: #8B80EF;
 }
 body main #btn-flotante-crear {
   position: absolute;

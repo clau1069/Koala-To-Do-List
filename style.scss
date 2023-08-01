@@ -68,179 +68,225 @@ Heebo: Variables: Regular 400 | Bold 700*/
   }
 
   body {
-    background-color: $background;
-    font-family: 'Heebo', sans-serif;
-    font-weight: $regular;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+      background-color: $background;
+      font-family: 'Heebo', sans-serif;
+      font-weight: $regular;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
 
-    //HEADER
-    header {
-        padding: $bordesApp;
-        display: flex;
-        align-items: center;
-        background-color: #dfdcfe;
-        border-bottom: 1px solid #d5d4e7;
-        @include shadow();
-        .icono-koala {
-            width: 30px;
-            height: 30px;
-            margin-right: 7px;
-        }
-        h1 {
-            font-size: larger;
-            color: $primary;
-        }
-    }
+      //HEADER
+      header {
+          padding: $bordesApp;
+          display: flex;
+          align-items: center;
+          background-color: #dfdcfe;
+          border-bottom: 1px solid #d5d4e7;
+          @include shadow();
 
-    //MAIN 
-    main {
-        margin: $bordesApp;
-        margin-top: 40px;
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
+          .icono-koala {
+              width: 30px;
+              height: 30px;
+              margin-right: 7px;
+          }
 
-        //FORM DE BÚSQUEDA
-        .contenedor-search {
-            margin-left: 20px;
-            margin-right: 20px;
-            position: relative;
-            top: 0;
-            left: 0;
-            #input-search {
-                @include inputText();
-                background-color: $primaryLighter;
-            }
-            .search-button-icon {
-                position: absolute;
-                top: 0;
-                right: 0;
-                margin-right: 10px;
-                width: 20px;
-                height: 100%;
-                border: none;
-                background: url(/assets/icons8-búsqueda-30.png);
-                background-position: center;
-                background-size: contain;
-                background-repeat: no-repeat;
-            }
+          h1 {
+              font-size: larger;
+              color: $primary;
+          }
+      }
 
-        }
+      //MAIN 
+      main {
+          margin: $bordesApp;
+          margin-top: 40px;
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
 
-        .contenedor-scroll{
-            flex-grow: 1;
-            position: relative;
-            .contenedor {
-                position: absolute;
-                height: 100%;
-                width: 100%;
-                background-color: #d4852c;
-                overflow-y: scroll;
-                 .cuadraditos {
-                  background-color: #464453;
+          //FORM DE BÚSQUEDA
+          .contenedor-search {
+              margin-left: 20px;
+              margin-right: 20px;
+              position: relative;
+              top: 0;
+              left: 0;
+
+              #input-search {
+                  @include inputText();
+                  background-color: $primaryLighter;
+              }
+
+              .search-button-icon {
+                  position: absolute;
+                  top: 0;
+                  right: 0;
+                  margin-right: 10px;
+                  width: 20px;
+                  height: 100%;
+                  border: none;
+                  background: url(/assets/icons8-búsqueda-30.png);
+                  background-position: center;
+                  background-size: contain;
+                  background-repeat: no-repeat;
+              }
+
+          }
+
+          .contenedor-scroll {
+              flex-grow: 1;
+              position: relative;
+
+              #contenedor-notas {
+                  position: absolute;
+                  height: 100%;
+                  width: 100%;
+                  overflow-y: scroll;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 12px;
+
+                  .note {
+                      background-color: $primaryLighter;
+                      border-radius: $bordesApp;
+                      padding: $bordesApp;
+
+                      h2 {
+                          color: $primary;
+                      }
+
+                      p {
+                          color: $fontDisabled;
+                      }
+
+                      div {
+                          display: flex;
+                          justify-content: space-between;
+                          align-items: center;
+                      }
+
+                      input[type="checkbox"] {
+                          appearance: none;
+                          cursor: pointer;
+                          width: 20px;
+                          height: 20px;
+                          border: 2px solid $fontForm;
+                          border-radius: 3px;
+                          background-color: #d4d1ee;
+                          
+                          background-position: center;
+                          background-size: cover;
+                          &:checked{
+                            border: 2px solid $primary;
+                            background-color: $primary;
+                            background-image: url(/assets/icons8-marca-de-verificación-64.png);
+                          }
+                      }
+
+                      //cuando la nota está CHECKEADA(Terminada)
+                      &[data-checked="true"]{
+                        background-color: $primaryLight;
+                        h2, p{
+                            text-decoration: line-through;
+                          }
+                          h2{
+                            color: $primary;
+                          }
+                      }
+                  }
+              }
+          }
+
+          //BOTÓN NUEVO
+          #btn-flotante-crear {
+              position: absolute;
+              bottom: 20px;
+              right: 20px;
+              @include btn();
+              width: 60px;
+              height: 60px;
+              border-radius: 60px;
+              background: url(/assets/icons8-más-48.png);
+              background-color: $primary;
+              background-position: center;
+              background-size: contain;
+              background-repeat: no-repeat;
+              @include shadow();
+
+              &.disabled {
+                  display: none;
+              }
+          }
+      }
+
+      //BOTTOM SHEET
+      #bottom-sheet {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          background-color: $primaryLight;
+          border-radius: 12px 12px 0 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 20px;
+          gap: 10px;
+
+          &>* {
+              appearance: none;
+          }
+
+          .icon-close {
+              width: 20px;
+              height: 20px;
+              margin-left: auto;
+              background: url(/assets/icons8-cerrar-30.png);
+              background-position: center;
+              background-size: contain
+          }
+
+          [type="text"] {
+              @include inputText();
+              background-color: $primaryLighter;
+              color: $font;
+
+              &#input-create-note-title {
+                  font-size: smaller;
+                  font-weight: $semibold;
+              }
+
+              &#input-create-note-content {
+                  font-size: smaller;
+                  font-weight: $regular;
+                  color: $fontLabel;
+              }
+          }
+
+          #btn-create-new {
+              @include btn();
+              display: flex;
+              background-color: $primary;
+              color: white;
+              width: max-content;
+              padding-left: 15px;
+              padding-right: 15px;
+
+              .icon-crear {
                   width: 20px;
                   height: 20px;
-                  margin-bottom: 5px;
-                } 
-            }
-        }
+                  background-color: white;
+                  background: url(/assets/icons8-más-48.png);
+                  background-position: center;
+                  background-size: contain;
+              }
+          }
 
-        #contenedor-notas {
-          display: none;
-        }
-
-        //BOTÓN NUEVO
-        #btn-flotante-crear {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            @include btn();
-            width: 60px;
-            height: 60px;
-            border-radius: 60px;
-            background: url(/assets/icons8-más-48.png);
-            background-color: $primary;
-            background-position: center;
-            background-size: contain;
-            background-repeat: no-repeat;
-            @include shadow();
-
-            &.disabled {
-                display: none;
-            }
-        }
-    }
-
-    //BOTTOM SHEET
-    #bottom-sheet {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: $primaryLight;
-        border-radius: 12px 12px 0 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-        gap: 10px;
-
-        &>* {
-            appearance: none;
-        }
-
-        .icon-close {
-            width: 20px;
-            height: 20px;
-            margin-left: auto;
-            background: url(/assets/icons8-cerrar-30.png);
-            background-position: center;
-            background-size: contain
-        }
-
-        [type="text"] {
-            @include inputText();
-            background-color: $primaryLighter;
-            color: $font;
-
-            &#input-create-note-title {
-                font-size: smaller;
-                font-weight: $semibold;
-            }
-
-            &#input-create-note-content {
-                font-size: smaller;
-                font-weight: $regular;
-                color: $fontLabel;
-            }
-        }
-
-        #btn-create-new {
-            @include btn();
-            display: flex;
-            background-color: $primary;
-            color: white;
-            width: max-content;
-            padding-left: 15px;
-            padding-right: 15px;
-
-            .icon-crear {
-                width: 20px;
-                height: 20px;
-                background-color: white;
-                background: url(/assets/icons8-más-48.png);
-                background-position: center;
-                background-size: contain;
-            }
-        }
-
-        &.disabled {
-            display: none;
-        }
-    }
-}
+          &.disabled {
+              display: none;
+          }
+      }
+  }
 
   .disabled {
       display: none;

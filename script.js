@@ -7,43 +7,8 @@
 
 mdxFileToHTML('')
 
-/**
- * @param {string} path
- * Hacer click aquí para ir a la función loadNotes: {@link loadNotes }
- * 
- *Hacer click aquí para ir a la función  saveInLocalStorage {@link saveInLocalStorage }
 
- *Hacer click aquí para ir a la función saveInLocalStorage {@link saveInLocalStorage }
-
- *Hacer click aquí para ir a la función listenChangesInNotes {@link listenChangesInNotes }
-
- *Hacer click aquí para ir a la función convertToEditable {@link convertToEditable }
-
- *Hacer click aquí para ir a la función updateNote {@link updateNote }
-
- *Hacer click aquí para ir a la función  localStorageUpdate{@link localStorageUpdate }
-
- *Hacer click aquí para ir a la función  visualUpdate{@link  visualUpdate}
-
- *Hacer click aquí para ir a la función  removeNote{@link removeNote }
-
- *Hacer click aquí para ir a la función  filterNotes{@link  filterNotes}
-
- *Hacer click aquí para ir a la función  fiterBySearch{@link  fiterBySearch}
-
- *Hacer click aquí para ir a la función  checkNote{@link  checkNote}
-
- *Hacer click aquí para ir a la función  newNoteHTML{@link  newNoteHTML}
-
- *Hacer click aquí para ir a la función  newNoteHTMLEditable{@link  newNoteHTMLEditable}
-
- *Hacer click aquí para ir a la función  getTitle{@link  getTitle}
-
- *Hacer click aquí para ir a la función  getContent{@link  getContent}
-
- *Hacer click aquí para ir a la función  getNoteOfLocalStorage{@link  getNoteOfLocalStorage}
- */
-function mdxFileToHTML(path){
+ function mdxFileToHTML(path){
     return new Promise((string)=>{
         const data = {
             key: string || any
@@ -83,6 +48,7 @@ floatingBtnCreate.addEventListener("click", revealBottomSheet)
 //FUNCIONES
 //cargarNotas
 function loadNotes() {
+    console.log("loadNotes");
     localStorageKeys.forEach((id) => {
         let notaObject = JSON.parse(localStorage.getItem(id))
         let titleString = notaObject.title
@@ -97,17 +63,20 @@ function loadNotes() {
 
 //FUNCIONES PARA CREAR
 function closeBottomSheet(){
+    console.log(closeBottomSheet);
     bottomSheetForm.classList.add("disabled")
     floatingBtnCreate.classList.remove("disabled")
     console.log(closeBtn);
 }
 function revealBottomSheet(){
+    console.log(revealBottomSheet);
     inputCreateNoteTitle.value = ""
     inputCreateNoteContent.value = ""
     bottomSheetForm.classList.remove("disabled")
     floatingBtnCreate.classList.add("disabled")
 }
 function createNewNote(e) {
+    console.log(createNewNote);
     e.preventDefault()
     if (bottomSheetForm.checkValidity()) {
     lastNoteId++
@@ -122,6 +91,7 @@ function createNewNote(e) {
 }
 //guardar en LocalStorage
 function saveInLocalStorage(noteTitle, noteContent) {
+    console.log(saveInLocalStorage);
     const note = {
         title: noteTitle,
         content: noteContent,
@@ -131,6 +101,7 @@ function saveInLocalStorage(noteTitle, noteContent) {
 }
 //crear la nota visualmente
 function createNewNoteVisually(notaId, noteTitle, noteContent, checked) {
+    console.log(createNewNoteVisually);
     let newNote = newNoteHTML(notaId, noteTitle, noteContent, checked)
     contenedorNotas.insertAdjacentHTML("afterbegin", newNote);
 }
@@ -139,6 +110,7 @@ function createNewNoteVisually(notaId, noteTitle, noteContent, checked) {
 
 // ESCUCHAR CAMBIOS EN NOTAS
 function listenChangesInNotes(e) {
+    console.log(listenChangesInNotes);
     const noteTarget = e.target.closest(".note")
     const idNote = noteTarget.dataset.id
     const isEditable = noteTarget.dataset.editable
@@ -151,25 +123,31 @@ function listenChangesInNotes(e) {
 }
 //TO EDITABLE
 function convertToEditable(noteHTML, noteId) {
+    console.log(convertToEditable);
     const titleHTMLTextContent = noteHTML.querySelector(".title").textContent
     const contentHTMLTextContent = noteHTML.querySelector(".content").textContent
-    noteHTML.outerHTML = newNoteHTMLEditable(noteId, titleHTMLTextContent, contentHTMLTextContent)
+    const dataChecked = noteHTML.getAttribute('data-checked')
+    noteHTML.outerHTML = newNoteHTMLEditable(noteId, titleHTMLTextContent, contentHTMLTextContent, dataChecked)
 
 }
 //UPDATE
 function updateNote(noteHTML, idNote) {
+    console.log(updateNote);
     //Obtener los nuevos título y contenido de los inputs
     const inputTitleValue = noteHTML.querySelector(".title").value
     const inputContentValue = noteHTML.querySelector(".content").value
+    const dataChecked = noteHTML.getAttribute('data-checked')
+
     //cambiar valores en local storage
     localStorageUpdate(idNote, inputTitleValue, inputContentValue)
     //cambiar visualmente
     //cambiar data-editable y cambiar los inputs por los textos normales
-    visualUpdate(noteHTML, idNote, inputTitleValue, inputContentValue)
+    visualUpdate(noteHTML, idNote, inputTitleValue, inputContentValue, dataChecked)
 
 }
 //
 function localStorageUpdate(idNote, newTitle, newContent, checked) {
+    console.log(localStorageUpdate);
     noteObject = JSON.parse(localStorage.getItem(idNote))
     noteObject.title = newTitle || noteObject.title
     noteObject.content = newContent || noteObject.content
@@ -177,11 +155,13 @@ function localStorageUpdate(idNote, newTitle, newContent, checked) {
     localStorage.setItem(idNote, JSON.stringify(noteObject))
 }
 //
-function visualUpdate(noteHTML, idNote, title, content) {
-    noteHTML.outerHTML = newNoteHTML(idNote, title, content)
+function visualUpdate(noteHTML, idNote, title, content, checked) {
+    console.log(visualUpdate);
+    noteHTML.outerHTML = newNoteHTML(idNote, title, content, checked)
 }
 //DELETE
 function removeNote(noteHTML, idNote) {
+    console.log(removeNote);
     noteHTML.remove()
     localStorage.removeItem(idNote)
 }
@@ -192,10 +172,12 @@ function removeNote(noteHTML, idNote) {
 //FUNCIONES DE FILTRADO
 //
 function filterNotes(e) {
+    console.log("filterNotes");
     if (e.target.nodeName.toLowerCase() == "input" && e.target.type === "text") { fiterBySearch(); return }
     if (e.target.nodeName.toLowerCase() == "input" && e.target.type === "checkbox") { fiterBySearch() }
 }
 function fiterBySearch() {
+    console.log("fiterBySearch");
     const searchValue = btnSearch.value
     const checkboxValue = checkboxSearch.checked
     const notes = document.querySelectorAll('.note')
@@ -217,6 +199,7 @@ function fiterBySearch() {
 
 //MOSTRAR COMO HECHA / NO HECHA
 function checkNote(noteHTML, idNote) {
+    console.log("checkNote");
     const noteObject = getNoteOfLocalStorage(idNote)
     if (noteObject.checked == "true") {
         localStorageUpdate(idNote, undefined, undefined, "false")
@@ -239,18 +222,19 @@ function newNoteHTML(noteId, title, content, checked) {
         `<div class="note " data-id="${noteId}" data-editable="false" data-checked="${checked || false}">
         <div>
             <h2 class="title">${title}</h2>
-            <p class="content">${content || ""}</p>
+            <input type="checkbox" class="checkbox" ${checked == "true" ? "checked" : ""}>
         </div>
-        <input type="checkbox" class="checkbox" ${checked == "true" ? "checked" : ""}>
+        <p class="content">${content || ""}</p>
+        
         
         </div>
     `
     return newNote
 }
 //generar plantilla HTML de la nota EDITABLE
-function newNoteHTMLEditable(noteId, title, content) {
+function newNoteHTMLEditable(noteId, title, content, checked) {
     let newNote =
-        `<div class="note" data-id="${noteId}" data-editable="true">
+        `<div class="note" data-id="${noteId}" data-editable="true" data-checked="${checked || false}">
             <input type="text" value="${title}" placeholder="Titulo" class="title">
             <input type="text" value="${content}" placeholder="descripción" class="content">
             
