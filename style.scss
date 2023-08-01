@@ -184,7 +184,7 @@ Heebo: Variables: Regular 400 | Bold 700*/
                       }
 
                       //cuando la nota está CHECKEADA(Terminada)
-                      &[data-checked="true"]{
+                      &[data-checked="true"][data-editable="false"]{
                         background-color: $primaryLight;
                         h2, p{
                             text-decoration: line-through;
@@ -192,6 +192,74 @@ Heebo: Variables: Regular 400 | Bold 700*/
                           h2{
                             color: $primary;
                           }
+                      }
+                      //cuando la nota es EDITABLE
+                      &[data-editable="true"]{
+                        display: flex;
+                        flex-direction: column;
+                        gap: 6px;
+                        background-color: $primaryLight;
+                        [type="text"] {
+                            @include inputText();
+                            background-color: $primaryLighter;
+                            color: $font;
+              
+                            &.title {
+                                font-size: smaller;
+                                font-weight: $semibold;
+                            }
+              
+                            &.content {
+                                font-size: smaller;
+                                font-weight: $regular;
+                                color: $fontLabel;
+                            }
+                        }
+                        div.buttons{
+                            margin-top: 6px;
+                            button{
+                                @include btn();
+                                display: flex;
+                                gap: 6px;
+                                padding: 6px 12px;
+                                align-items: center;
+                                p{
+                                    color: white;
+                                }
+                                //los iconos
+                                span.icon{
+                                    display: block;
+                                    width: 20px;
+                                    height: 20px;
+                                    background-position: center;
+                                    background-size: contain;
+
+                                    &.remove{
+                                        background-image: url(assets/icons8-basura-32\ \(1\).png);
+                                    }
+                                    &.save{
+                                        background-image: url(assets/icons8-guardar-32.png);
+                                    }
+                                    &.cancel{
+                                        background-image: url(assets/icons8-multiplicar-32\ \(1\).png);
+                                    }
+                                }
+                                //especificaciones de cada botón
+                                &.remove{
+                                    background-color: $danger;
+                                }
+                                &.save{
+                                    background-color: $primary;
+                                }
+                                &.cancel{
+                                    background-color: $primaryLighter;
+                                    p{
+                                        color: $primary;
+                                        font-weight: $semibold;
+                                    }
+                                }
+                            }
+                        }
                       }
                   }
               }

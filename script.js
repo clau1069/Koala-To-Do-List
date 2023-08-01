@@ -115,10 +115,14 @@ function listenChangesInNotes(e) {
     const idNote = noteTarget.dataset.id
     const isEditable = noteTarget.dataset.editable
     const targetNodeName = e.target.nodeName.toLowerCase();
-    if (e.target.classList.contains("remove")) { removeNote(noteTarget, idNote); return }
-    if (e.target.classList.contains("save")) { updateNote(noteTarget, idNote); return }
+    
     if (targetNodeName === "input" && e.target.type === "checkbox") { checkNote(noteTarget, idNote); return }
-    if (isEditable == "false") { convertToEditable(noteTarget, idNote) }
+    if (isEditable == "false") { convertToEditable(noteTarget, idNote); return }
+    const btnClicked= e.target.closest("button")
+    console.log(btnClicked);
+    if (btnClicked.classList.contains("remove")) { removeNote(noteTarget, idNote); return }
+    if (btnClicked.classList.contains("save")) { updateNote(noteTarget, idNote); return }
+    if (btnClicked.classList.contains("cancel")) { convertToNoEditable(noteTarget, idNote); return }
 
 }
 //TO EDITABLE
@@ -130,19 +134,23 @@ function convertToEditable(noteHTML, noteId) {
     noteHTML.outerHTML = newNoteHTMLEditable(noteId, titleHTMLTextContent, contentHTMLTextContent, dataChecked)
 
 }
+//TO NO EDITABLE
+function convertToNoEditable(noteHTML, idNote){
+    const title = noteHTML.querySelector(".title").value
+    const content = noteHTML.querySelector(".content").value
+    const checked = noteHTML.getAttribute('data-checked')
+    noteHTML.outerHTML = newNoteHTML(idNote, title, content, checked)
+}
+
 //UPDATE
 function updateNote(noteHTML, idNote) {
     console.log(updateNote);
-    //Obtener los nuevos título y contenido de los inputs
     const inputTitleValue = noteHTML.querySelector(".title").value
     const inputContentValue = noteHTML.querySelector(".content").value
-    const dataChecked = noteHTML.getAttribute('data-checked')
-
     //cambiar valores en local storage
     localStorageUpdate(idNote, inputTitleValue, inputContentValue)
-    //cambiar visualmente
-    //cambiar data-editable y cambiar los inputs por los textos normales
-    visualUpdate(noteHTML, idNote, inputTitleValue, inputContentValue, dataChecked)
+    //cambiar a no editable (visualmente)
+    convertToNoEditable(noteHTML, idNote)
 
 }
 //
@@ -154,11 +162,7 @@ function localStorageUpdate(idNote, newTitle, newContent, checked) {
     noteObject.checked = checked || noteObject.checked
     localStorage.setItem(idNote, JSON.stringify(noteObject))
 }
-//
-function visualUpdate(noteHTML, idNote, title, content, checked) {
-    console.log(visualUpdate);
-    noteHTML.outerHTML = newNoteHTML(idNote, title, content, checked)
-}
+
 //DELETE
 function removeNote(noteHTML, idNote) {
     console.log(removeNote);
@@ -236,15 +240,21 @@ function newNoteHTMLEditable(noteId, title, content, checked) {
     let newNote =
         `<div class="note" data-id="${noteId}" data-editable="true" data-checked="${checked || false}">
             <input type="text" value="${title}" placeholder="Titulo" class="title">
-            <input type="text" value="${content}" placeholder="descripción" class="content">
+            <input type="text" value="${content}" placeholder="Descripción" class="content">
             
             <div class="buttons">
-                <button class="btn remove">
-                <span class="icon remove"></span>
-                </button>
-                <button class="btn save">Guardar
-                <span class="icon save"></span>
-                </button>
+                        <button class="btn remove">
+                            <p>Borrar</p>
+                            <span class="icon remove"></span>
+                        </button>
+                        <button class="btn save">
+                            <p>Guardar</p>
+                            <span class="icon save"></span>
+                        </button>
+                        <button class="btn cancel">
+                            <p>Cancelar</p>
+                            <span class="icon cancel"></span>
+                        </button>
             </div>
         </div>
         `

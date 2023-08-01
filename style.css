@@ -122,14 +122,91 @@ body main .contenedor-scroll #contenedor-notas .note input[type=checkbox]:checke
   background-color: #8B80EF;
   background-image: url(/assets/icons8-marca-de-verificación-64.png);
 }
-body main .contenedor-scroll #contenedor-notas .note[data-checked=true] {
+body main .contenedor-scroll #contenedor-notas .note[data-checked=true][data-editable=false] {
   background-color: #B6B0FB;
 }
-body main .contenedor-scroll #contenedor-notas .note[data-checked=true] h2, body main .contenedor-scroll #contenedor-notas .note[data-checked=true] p {
+body main .contenedor-scroll #contenedor-notas .note[data-checked=true][data-editable=false] h2, body main .contenedor-scroll #contenedor-notas .note[data-checked=true][data-editable=false] p {
   text-decoration: line-through;
 }
-body main .contenedor-scroll #contenedor-notas .note[data-checked=true] h2 {
+body main .contenedor-scroll #contenedor-notas .note[data-checked=true][data-editable=false] h2 {
   color: #8B80EF;
+}
+body main .contenedor-scroll #contenedor-notas .note[data-editable=true] {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background-color: #B6B0FB;
+}
+body main .contenedor-scroll #contenedor-notas .note[data-editable=true] [type=text] {
+  appearance: none;
+  width: 100%;
+  border: none;
+  padding: 10px 15px;
+  font-family: "Heebo", sans-serif;
+  border-radius: 24px;
+  color: #201d3a;
+  background-color: #dfdcfe;
+  color: #201d3a;
+}
+body main .contenedor-scroll #contenedor-notas .note[data-editable=true] [type=text]::placeholder {
+  font-style: italic;
+  color: #aaa6c4;
+}
+body main .contenedor-scroll #contenedor-notas .note[data-editable=true] [type=text].title {
+  font-size: smaller;
+  font-weight: 600;
+}
+body main .contenedor-scroll #contenedor-notas .note[data-editable=true] [type=text].content {
+  font-size: smaller;
+  font-weight: 400;
+  color: #807f89;
+}
+body main .contenedor-scroll #contenedor-notas .note[data-editable=true] div.buttons {
+  margin-top: 6px;
+}
+body main .contenedor-scroll #contenedor-notas .note[data-editable=true] div.buttons button {
+  padding: 6px 6px;
+  appearance: none;
+  font-family: "Heebo", sans-serif;
+  font-weight: 400;
+  border-radius: 20px;
+  border: none;
+  display: flex;
+  gap: 6px;
+  padding: 6px 12px;
+  align-items: center;
+}
+body main .contenedor-scroll #contenedor-notas .note[data-editable=true] div.buttons button p {
+  color: white;
+}
+body main .contenedor-scroll #contenedor-notas .note[data-editable=true] div.buttons button span.icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-position: center;
+  background-size: contain;
+}
+body main .contenedor-scroll #contenedor-notas .note[data-editable=true] div.buttons button span.icon.remove {
+  background-image: url(assets/icons8-basura-32\ \(1\).png);
+}
+body main .contenedor-scroll #contenedor-notas .note[data-editable=true] div.buttons button span.icon.save {
+  background-image: url(assets/icons8-guardar-32.png);
+}
+body main .contenedor-scroll #contenedor-notas .note[data-editable=true] div.buttons button span.icon.cancel {
+  background-image: url(assets/icons8-multiplicar-32\ \(1\).png);
+}
+body main .contenedor-scroll #contenedor-notas .note[data-editable=true] div.buttons button.remove {
+  background-color: #ff8a8a;
+}
+body main .contenedor-scroll #contenedor-notas .note[data-editable=true] div.buttons button.save {
+  background-color: #8B80EF;
+}
+body main .contenedor-scroll #contenedor-notas .note[data-editable=true] div.buttons button.cancel {
+  background-color: #dfdcfe;
+}
+body main .contenedor-scroll #contenedor-notas .note[data-editable=true] div.buttons button.cancel p {
+  color: #8B80EF;
+  font-weight: 600;
 }
 body main #btn-flotante-crear {
   position: absolute;
