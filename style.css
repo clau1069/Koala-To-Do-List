@@ -137,7 +137,7 @@ body main .contenedor-scroll #contenedor-notas .note[data-editable=true] {
   gap: 6px;
   background-color: #B6B0FB;
 }
-body main .contenedor-scroll #contenedor-notas .note[data-editable=true] [type=text] {
+body main .contenedor-scroll #contenedor-notas .note[data-editable=true] [type=text], body main .contenedor-scroll #contenedor-notas .note[data-editable=true] textarea {
   appearance: none;
   width: 100%;
   border: none;
@@ -148,15 +148,15 @@ body main .contenedor-scroll #contenedor-notas .note[data-editable=true] [type=t
   background-color: #dfdcfe;
   color: #201d3a;
 }
-body main .contenedor-scroll #contenedor-notas .note[data-editable=true] [type=text]::placeholder {
+body main .contenedor-scroll #contenedor-notas .note[data-editable=true] [type=text]::placeholder, body main .contenedor-scroll #contenedor-notas .note[data-editable=true] textarea::placeholder {
   font-style: italic;
   color: #aaa6c4;
 }
-body main .contenedor-scroll #contenedor-notas .note[data-editable=true] [type=text].title {
+body main .contenedor-scroll #contenedor-notas .note[data-editable=true] [type=text].title, body main .contenedor-scroll #contenedor-notas .note[data-editable=true] textarea.title {
   font-size: smaller;
   font-weight: 600;
 }
-body main .contenedor-scroll #contenedor-notas .note[data-editable=true] [type=text].content {
+body main .contenedor-scroll #contenedor-notas .note[data-editable=true] [type=text].content, body main .contenedor-scroll #contenedor-notas .note[data-editable=true] textarea.content {
   font-size: smaller;
   font-weight: 400;
   color: #807f89;
@@ -257,7 +257,7 @@ body #bottom-sheet .icon-close {
   background-position: center;
   background-size: contain;
 }
-body #bottom-sheet [type=text] {
+body #bottom-sheet [type=text], body #bottom-sheet textarea {
   appearance: none;
   width: 100%;
   border: none;
@@ -268,15 +268,15 @@ body #bottom-sheet [type=text] {
   background-color: #dfdcfe;
   color: #201d3a;
 }
-body #bottom-sheet [type=text]::placeholder {
+body #bottom-sheet [type=text]::placeholder, body #bottom-sheet textarea::placeholder {
   font-style: italic;
   color: #aaa6c4;
 }
-body #bottom-sheet [type=text]#input-create-note-title {
+body #bottom-sheet [type=text]#input-create-note-title, body #bottom-sheet textarea#input-create-note-title {
   font-size: smaller;
   font-weight: 600;
 }
-body #bottom-sheet [type=text]#input-create-note-content {
+body #bottom-sheet [type=text]#input-create-note-content, body #bottom-sheet textarea#input-create-note-content {
   font-size: smaller;
   font-weight: 400;
   color: #807f89;

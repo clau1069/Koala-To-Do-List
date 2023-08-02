@@ -5,30 +5,20 @@
 - Los filtros tienen que funcionar combinados.
 - Las notas tienen que persistir al recargar la página ( localStorage) */
 
-mdxFileToHTML('')
-
-
- function mdxFileToHTML(path){
-    return new Promise((string)=>{
-        const data = {
-            key: string || any
-        }
-        const html= string
-    })
-} 
 
 //DOM
 const btnCreateNew = document.getElementById("btn-create-new")
 const inputCreateNoteTitle = document.getElementById("input-create-note-title")
-const inputCreateNoteContent= document.getElementById("input-create-note-content")
+const inputCreateNoteContent = document.getElementById("input-create-note-content")
 const contenedorNotas = document.getElementById('contenedor-notas');
 /* const btnRemove = document.getElementsByClassName("remove") */
 const btnSearch = document.getElementById("input-search")
 const checkboxSearch = document.getElementById("checkbox-search")
-const formSearch = document.getElementById("search") 
+const formSearch = document.getElementById("search")
 const bottomSheetForm = document.getElementById("bottom-sheet")
-const closeBtn= document.getElementById("close-bottom-sheet")
-const floatingBtnCreate= document.getElementById("btn-flotante-crear")
+const closeBtn = document.getElementById("close-bottom-sheet")
+const floatingBtnCreate = document.getElementById("btn-flotante-crear")
+
 
 let localStorageKeys = Object.keys(localStorage).sort(function (a, b) {
     return a - b
@@ -37,11 +27,14 @@ let lastNoteId = localStorageKeys[localStorageKeys.length - 1] || 0
 
 //EVENTOS
 document.addEventListener("DOMContentLoaded", loadNotes())
+
 btnCreateNew.addEventListener("click", createNewNote)
 contenedorNotas.addEventListener("click", listenChangesInNotes)
+contenedorNotas.addEventListener("input", autoResizeTextarea)
 formSearch.addEventListener("input", filterNotes)
 closeBtn.addEventListener("click", closeBottomSheet)
 floatingBtnCreate.addEventListener("click", revealBottomSheet)
+inputCreateNoteContent.addEventListener("input", autoResizeTextarea)
 
 
 
@@ -62,13 +55,13 @@ function loadNotes() {
 
 
 //FUNCIONES PARA CREAR
-function closeBottomSheet(){
+function closeBottomSheet() {
     console.log(closeBottomSheet);
     bottomSheetForm.classList.add("disabled")
     floatingBtnCreate.classList.remove("disabled")
     console.log(closeBtn);
 }
-function revealBottomSheet(){
+function revealBottomSheet() {
     console.log(revealBottomSheet);
     inputCreateNoteTitle.value = ""
     inputCreateNoteContent.value = ""
@@ -79,12 +72,12 @@ function createNewNote(e) {
     console.log(createNewNote);
     e.preventDefault()
     if (bottomSheetForm.checkValidity()) {
-    lastNoteId++
-    let newNoteTitle = inputCreateNoteTitle.value
-    let newNoteContent = inputCreateNoteContent.value
-    saveInLocalStorage(newNoteTitle, newNoteContent)
-    createNewNoteVisually(lastNoteId, newNoteTitle, newNoteContent)
-   closeBottomSheet()
+        lastNoteId++
+        let newNoteTitle = inputCreateNoteTitle.value
+        let newNoteContent = inputCreateNoteContent.value
+        saveInLocalStorage(newNoteTitle, newNoteContent)
+        createNewNoteVisually(lastNoteId, newNoteTitle, newNoteContent)
+        closeBottomSheet()
     }
     return;
 
@@ -115,14 +108,17 @@ function listenChangesInNotes(e) {
     const idNote = noteTarget.dataset.id
     const isEditable = noteTarget.dataset.editable
     const targetNodeName = e.target.nodeName.toLowerCase();
-    
+
     if (targetNodeName === "input" && e.target.type === "checkbox") { checkNote(noteTarget, idNote); return }
     if (isEditable == "false") { convertToEditable(noteTarget, idNote); return }
-    const btnClicked= e.target.closest("button")
-    console.log(btnClicked);
-    if (btnClicked.classList.contains("remove")) { removeNote(noteTarget, idNote); return }
-    if (btnClicked.classList.contains("save")) { updateNote(noteTarget, idNote); return }
-    if (btnClicked.classList.contains("cancel")) { convertToNoEditable(noteTarget, idNote); return }
+    //funciones del CRUD
+    const btnClicked = e.target.closest("button")
+    if (btnClicked) {
+        if (btnClicked.classList.contains("remove")) { removeNote(noteTarget, idNote); return }
+        if (btnClicked.classList.contains("save")) { updateNote(noteTarget, idNote); return }
+        if (btnClicked.classList.contains("cancel")) { convertToNoEditable(noteTarget, idNote); return }
+    }
+
 
 }
 //TO EDITABLE
@@ -135,7 +131,7 @@ function convertToEditable(noteHTML, noteId) {
 
 }
 //TO NO EDITABLE
-function convertToNoEditable(noteHTML, idNote){
+function convertToNoEditable(noteHTML, idNote) {
     const title = noteHTML.querySelector(".title").value
     const content = noteHTML.querySelector(".content").value
     const checked = noteHTML.getAttribute('data-checked')
@@ -240,7 +236,8 @@ function newNoteHTMLEditable(noteId, title, content, checked) {
     let newNote =
         `<div class="note" data-id="${noteId}" data-editable="true" data-checked="${checked || false}">
             <input type="text" value="${title}" placeholder="Titulo" class="title">
-            <input type="text" value="${content}" placeholder="Descripción" class="content">
+            <textarea placeholder="Descripción" rows="1" class="content">${content}</textarea>
+
             
             <div class="buttons">
                         <button class="btn remove">
@@ -270,4 +267,10 @@ function getContent(HTMLNote) {
 }
 function getNoteOfLocalStorage(idNote) {
     return JSON.parse(localStorage.getItem(idNote))
+}
+function autoResizeTextarea(e) {
+    const textarea= e.target
+    textarea.style.height = 'auto';
+  textarea.style.height = textarea.scrollHeight + 'px';
+    
 }

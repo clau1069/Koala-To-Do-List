@@ -199,7 +199,7 @@ Heebo: Variables: Regular 400 | Bold 700*/
                         flex-direction: column;
                         gap: 6px;
                         background-color: $primaryLight;
-                        [type="text"] {
+                        [type="text"], textarea {
                             @include inputText();
                             background-color: $primaryLighter;
                             color: $font;
@@ -314,7 +314,7 @@ Heebo: Variables: Regular 400 | Bold 700*/
               background-size: contain
           }
 
-          [type="text"] {
+          [type="text"], textarea{
               @include inputText();
               background-color: $primaryLighter;
               color: $font;
