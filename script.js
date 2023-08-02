@@ -128,6 +128,7 @@ function convertToEditable(noteHTML, noteId) {
     const contentHTMLTextContent = noteHTML.querySelector(".content").textContent
     const dataChecked = noteHTML.getAttribute('data-checked')
     noteHTML.outerHTML = newNoteHTMLEditable(noteId, titleHTMLTextContent, contentHTMLTextContent, dataChecked)
+    autoResizeTextarea()
 
 }
 //TO NO EDITABLE
@@ -236,7 +237,7 @@ function newNoteHTMLEditable(noteId, title, content, checked) {
     let newNote =
         `<div class="note" data-id="${noteId}" data-editable="true" data-checked="${checked || false}">
             <input type="text" value="${title}" placeholder="Titulo" class="title">
-            <textarea placeholder="Descripción" rows="1" class="content">${content}</textarea>
+            <textarea id="textarea-editable-note" placeholder="Descripción" rows="1" class="content">${content}</textarea>
 
             
             <div class="buttons">
@@ -269,8 +270,16 @@ function getNoteOfLocalStorage(idNote) {
     return JSON.parse(localStorage.getItem(idNote))
 }
 function autoResizeTextarea(e) {
-    const textarea= e.target
+    let textarea;
+    if(e != null){
+        textarea= e.target
+    }else {
+        textarea= document.getElementById("textarea-editable-note")
+        console.log(textarea);
+}
     textarea.style.height = 'auto';
-  textarea.style.height = textarea.scrollHeight + 'px';
+    textarea.style.height = textarea.scrollHeight + 'px';
     
 }
+//por un lado reasigna el heigth de un textarea. El textarea lo saca del target del evento (solo funciona cuando hay un evento)
+//por otro lado reasigna el heigth de un textarea, con un textarea que saca no del evento, sino buscandolo en el DOM
