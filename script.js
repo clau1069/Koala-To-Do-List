@@ -271,8 +271,8 @@ function getNoteOfLocalStorage(idNote) {
 }
 function autoResizeTextarea(e) {
     let textarea;
-    if(e != null){
-        textarea= e.target
+    if(e != null && e.target.nodeName== "TEXTAREA"){
+            textarea= e.target
     }else {
         textarea= document.getElementById("textarea-editable-note")
         console.log(textarea);

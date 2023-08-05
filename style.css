@@ -1,12 +1,9 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700&display=swap");
-/* font-family: 'Heebo', sans-serif
-Heebo: Variables: Regular 400 | Bold 700*/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: #201d3a;
 }
 
 body {
@@ -43,14 +40,14 @@ body main {
   flex-direction: column;
   flex-grow: 1;
 }
-body main .contenedor-search {
+body main .form-search {
   margin-left: 20px;
   margin-right: 20px;
   position: relative;
   top: 0;
   left: 0;
 }
-body main .contenedor-search #input-search {
+body main .form-search #input-search {
   appearance: none;
   width: 100%;
   border: none;
@@ -60,11 +57,11 @@ body main .contenedor-search #input-search {
   color: #201d3a;
   background-color: #dfdcfe;
 }
-body main .contenedor-search #input-search::placeholder {
+body main .form-search #input-search::placeholder {
   font-style: italic;
   color: #aaa6c4;
 }
-body main .contenedor-search .search-button-icon {
+body main .form-search .search-button-icon {
   position: absolute;
   top: 0;
   right: 0;
@@ -77,11 +74,39 @@ body main .contenedor-search .search-button-icon {
   background-size: contain;
   background-repeat: no-repeat;
 }
-body main .contenedor-scroll {
+body main .filters {
+  display: flex;
+  margin: 6px 0 15px 23px;
+  margin: 6px 23px 15px auto;
+  align-items: center;
+}
+body main .filters p {
+  margin-right: 6px;
+  color: #464453;
+  font-size: small;
+}
+body main .filters [type=checkbox] {
+  appearance: none;
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #A8A5C6;
+  border-radius: 3px;
+  background-color: #d4d1ee;
+  background-position: center;
+  background-size: cover;
+}
+body main .filters [type=checkbox]:checked {
+  appearance: none;
+  border: 2px solid #8B80EF;
+  background-color: #8B80EF;
+  background-image: url(/assets/icons8-marca-de-verificación-64.png);
+}
+body main .contenedor-scroll-notas {
   flex-grow: 1;
   position: relative;
 }
-body main .contenedor-scroll #contenedor-notas {
+body main .contenedor-scroll-notas #contenedor-notas {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -90,23 +115,21 @@ body main .contenedor-scroll #contenedor-notas {
   flex-direction: column;
   gap: 12px;
 }
-body main .contenedor-scroll #contenedor-notas .note {
+body main .contenedor-scroll-notas #contenedor-notas .note {
+  word-wrap: break-word;
   background-color: #dfdcfe;
   border-radius: 15px;
   padding: 15px;
 }
-body main .contenedor-scroll #contenedor-notas .note h2 {
-  color: #8B80EF;
-}
-body main .contenedor-scroll #contenedor-notas .note p {
-  color: #464453;
-}
-body main .contenedor-scroll #contenedor-notas .note div {
+body main .contenedor-scroll-notas #contenedor-notas .note div {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-body main .contenedor-scroll #contenedor-notas .note input[type=checkbox] {
+body main .contenedor-scroll-notas #contenedor-notas .note div h2 {
+  color: #8B80EF;
+}
+body main .contenedor-scroll-notas #contenedor-notas .note div input[type=checkbox] {
   appearance: none;
   cursor: pointer;
   width: 20px;
@@ -117,27 +140,34 @@ body main .contenedor-scroll #contenedor-notas .note input[type=checkbox] {
   background-position: center;
   background-size: cover;
 }
-body main .contenedor-scroll #contenedor-notas .note input[type=checkbox]:checked {
+body main .contenedor-scroll-notas #contenedor-notas .note div input[type=checkbox]:checked {
+  appearance: none;
   border: 2px solid #8B80EF;
   background-color: #8B80EF;
   background-image: url(/assets/icons8-marca-de-verificación-64.png);
 }
-body main .contenedor-scroll #contenedor-notas .note[data-checked=true][data-editable=false] {
+body main .contenedor-scroll-notas #contenedor-notas .note p {
+  margin-top: 6px;
+  color: #464453;
+}
+body main .contenedor-scroll-notas #contenedor-notas .note[data-checked=true][data-editable=false] {
   background-color: #B6B0FB;
 }
-body main .contenedor-scroll #contenedor-notas .note[data-checked=true][data-editable=false] h2, body main .contenedor-scroll #contenedor-notas .note[data-checked=true][data-editable=false] p {
+body main .contenedor-scroll-notas #contenedor-notas .note[data-checked=true][data-editable=false] h2,
+body main .contenedor-scroll-notas #contenedor-notas .note[data-checked=true][data-editable=false] p {
   text-decoration: line-through;
 }
-body main .contenedor-scroll #contenedor-notas .note[data-checked=true][data-editable=false] h2 {
+body main .contenedor-scroll-notas #contenedor-notas .note[data-checked=true][data-editable=false] h2 {
   color: #8B80EF;
 }
-body main .contenedor-scroll #contenedor-notas .note[data-editable=true] {
+body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] {
   display: flex;
   flex-direction: column;
   gap: 6px;
   background-color: #B6B0FB;
 }
-body main .contenedor-scroll #contenedor-notas .note[data-editable=true] [type=text], body main .contenedor-scroll #contenedor-notas .note[data-editable=true] textarea {
+body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] [type=text],
+body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] textarea {
   appearance: none;
   width: 100%;
   border: none;
@@ -148,23 +178,26 @@ body main .contenedor-scroll #contenedor-notas .note[data-editable=true] [type=t
   background-color: #dfdcfe;
   color: #201d3a;
 }
-body main .contenedor-scroll #contenedor-notas .note[data-editable=true] [type=text]::placeholder, body main .contenedor-scroll #contenedor-notas .note[data-editable=true] textarea::placeholder {
+body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] [type=text]::placeholder,
+body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] textarea::placeholder {
   font-style: italic;
   color: #aaa6c4;
 }
-body main .contenedor-scroll #contenedor-notas .note[data-editable=true] [type=text].title, body main .contenedor-scroll #contenedor-notas .note[data-editable=true] textarea.title {
+body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] [type=text].title,
+body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] textarea.title {
   font-size: smaller;
   font-weight: 600;
 }
-body main .contenedor-scroll #contenedor-notas .note[data-editable=true] [type=text].content, body main .contenedor-scroll #contenedor-notas .note[data-editable=true] textarea.content {
+body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] [type=text].content,
+body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] textarea.content {
   font-size: smaller;
   font-weight: 400;
   color: #807f89;
 }
-body main .contenedor-scroll #contenedor-notas .note[data-editable=true] div.buttons {
+body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] div.buttons {
   margin-top: 6px;
 }
-body main .contenedor-scroll #contenedor-notas .note[data-editable=true] div.buttons button {
+body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] div.buttons button {
   padding: 6px 6px;
   appearance: none;
   font-family: "Heebo", sans-serif;
@@ -176,35 +209,35 @@ body main .contenedor-scroll #contenedor-notas .note[data-editable=true] div.but
   padding: 6px 12px;
   align-items: center;
 }
-body main .contenedor-scroll #contenedor-notas .note[data-editable=true] div.buttons button p {
+body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] div.buttons button p {
   color: white;
 }
-body main .contenedor-scroll #contenedor-notas .note[data-editable=true] div.buttons button span.icon {
+body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] div.buttons button span.icon {
   display: block;
   width: 20px;
   height: 20px;
   background-position: center;
   background-size: contain;
 }
-body main .contenedor-scroll #contenedor-notas .note[data-editable=true] div.buttons button span.icon.remove {
+body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] div.buttons button span.icon.remove {
   background-image: url(assets/icons8-basura-32\ \(1\).png);
 }
-body main .contenedor-scroll #contenedor-notas .note[data-editable=true] div.buttons button span.icon.save {
+body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] div.buttons button span.icon.save {
   background-image: url(assets/icons8-guardar-32.png);
 }
-body main .contenedor-scroll #contenedor-notas .note[data-editable=true] div.buttons button span.icon.cancel {
+body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] div.buttons button span.icon.cancel {
   background-image: url(assets/icons8-multiplicar-32\ \(1\).png);
 }
-body main .contenedor-scroll #contenedor-notas .note[data-editable=true] div.buttons button.remove {
+body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] div.buttons button.remove {
   background-color: #ff8a8a;
 }
-body main .contenedor-scroll #contenedor-notas .note[data-editable=true] div.buttons button.save {
+body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] div.buttons button.save {
   background-color: #8B80EF;
 }
-body main .contenedor-scroll #contenedor-notas .note[data-editable=true] div.buttons button.cancel {
+body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] div.buttons button.cancel {
   background-color: #dfdcfe;
 }
-body main .contenedor-scroll #contenedor-notas .note[data-editable=true] div.buttons button.cancel p {
+body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] div.buttons button.cancel p {
   color: #8B80EF;
   font-weight: 600;
 }
@@ -221,10 +254,10 @@ body main #btn-flotante-crear {
   width: 60px;
   height: 60px;
   border-radius: 60px;
-  background: url(/assets/icons8-más-48.png);
+  background: url(/assets/icons8-más-32.png);
   background-color: #8B80EF;
   background-position: center;
-  background-size: contain;
+  background-size: 30px;
   background-repeat: no-repeat;
   -webkit-box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.17);
   -moz-box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.17);
@@ -253,11 +286,12 @@ body #bottom-sheet .icon-close {
   width: 20px;
   height: 20px;
   margin-left: auto;
-  background: url(/assets/icons8-cerrar-30.png);
+  background: url(/assets/icons8-multiplicar-32\ \(1\).png);
   background-position: center;
   background-size: contain;
 }
-body #bottom-sheet [type=text], body #bottom-sheet textarea {
+body #bottom-sheet [type=text],
+body #bottom-sheet textarea {
   appearance: none;
   width: 100%;
   border: none;
@@ -268,15 +302,18 @@ body #bottom-sheet [type=text], body #bottom-sheet textarea {
   background-color: #dfdcfe;
   color: #201d3a;
 }
-body #bottom-sheet [type=text]::placeholder, body #bottom-sheet textarea::placeholder {
+body #bottom-sheet [type=text]::placeholder,
+body #bottom-sheet textarea::placeholder {
   font-style: italic;
   color: #aaa6c4;
 }
-body #bottom-sheet [type=text]#input-create-note-title, body #bottom-sheet textarea#input-create-note-title {
+body #bottom-sheet [type=text]#input-create-note-title,
+body #bottom-sheet textarea#input-create-note-title {
   font-size: smaller;
   font-weight: 600;
 }
-body #bottom-sheet [type=text]#input-create-note-content, body #bottom-sheet textarea#input-create-note-content {
+body #bottom-sheet [type=text]#input-create-note-content,
+body #bottom-sheet textarea#input-create-note-content {
   font-size: smaller;
   font-weight: 400;
   color: #807f89;

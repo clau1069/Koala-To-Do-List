@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="assets/icons8-koala-50.png" type="image/x-icon">
+    <link type="image/png" sizes="32x32" rel="icon" href="assets/icons8-koala-32.png">
     <title>Koala To Do List</title>
 </head>
 
@@ -19,17 +19,15 @@
     <main>
         <!-- Buscador -->
         <form id="search" class="form-search">
-            <div class="contenedor-search">
-                <input type="text" id="input-search" placeholder="buscar">
-                <button type="submit" class="search-button-icon"></button>
-            </div>
-            <div>
-                <p>Solo completados</p>
-                <input type="checkbox" id="checkbox-search">
-            </div>
+            <input type="text" id="input-search" placeholder="buscar">
+            <button type="submit" class="search-button-icon"></button>
         </form>
+        <div class="filters">
+            <p>Solo completados</p>
+            <input type="checkbox" id="checkbox-search">
+        </div>
         <!--contenedor Notas-->
-        <div class="contenedor-scroll">
+        <div class="contenedor-scroll-notas">
             <div id="contenedor-notas">
             </div>
         </div>

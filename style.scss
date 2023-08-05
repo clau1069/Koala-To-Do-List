@@ -1,361 +1,395 @@
-  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700&display=swap');
-  /* font-family: 'Heebo', sans-serif
-Heebo: Variables: Regular 400 | Bold 700*/
-  //COLORES
-  $primary: #8B80EF;
-  $primaryLight: #B6B0FB;
-  $primaryLighter: #dfdcfe;
-  $primaryLabel: #ECEAFE;
-  $danger: #ff8a8a;
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700&display=swap');
+//font-family: 'Heebo', sans-serif
+//Heebo: Variables: Regular 400 | Bold 700*/
+//COLORES
+$primary: #8B80EF;
+$primaryLight: #B6B0FB;
+$primaryLighter: #dfdcfe;
+$primaryLabel: #ECEAFE;
+$danger: #ff8a8a;
 
-  $background: #f5f4ff;
+$background: #f5f4ff;
 
-  //coloresFuentes
-  $font: #201d3a;
-  $fontDisabled: #464453;
-  $fontLabel: #807f89;
-  $fontLabelLighter: #aaa6c4;
-  $fontLabelDisabled: #6f6ba6;
-  $fontForm: #A8A5C6;
+//coloresFuentes
+$font: #201d3a;
+$fontDisabled: #464453;
+$fontLabel: #807f89;
+$fontLabelLighter: #aaa6c4;
+$fontLabelDisabled: #6f6ba6;
+$fontForm: #A8A5C6;
 
-  //WEIGTHs
-  $regular: 400;
-  $semibold: 600;
-  $bold: 700;
+//WEIGTHs
+$regular: 400;
+$semibold: 600;
+$bold: 700;
 
-  //OTRAS VARIABLES
-  $bordesApp: 15px;
+//OTRAS VARIABLES
+$bordesApp: 15px;
 
-  @mixin shadow() {
-      -webkit-box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.17);
-      -moz-box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.17);
-      box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.17);
-  }
+@mixin shadow() {
+    -webkit-box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.17);
+    -moz-box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.17);
+    box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.17);
+}
 
-  @mixin inputText() {
-      appearance: none;
-      width: 100%;
-      border: none;
-      padding: 10px 15px;
-      font-family: 'Heebo', sans-serif;
-      border-radius: 24px;
-      color: $font;
+@mixin inputText() {
+    appearance: none;
+    width: 100%;
+    border: none;
+    padding: 10px 15px;
+    font-family: 'Heebo', sans-serif;
+    border-radius: 24px;
+    color: $font;
 
-      &::placeholder {
-          font-style: italic;
-          color: $fontLabelLighter;
-      }
-  }
+    &::placeholder {
+        font-style: italic;
+        color: $fontLabelLighter;
+    }
+}
 
-  @mixin btn {
-      padding: 6px 6px;
-      appearance: none;
-      font-family: 'Heebo', sans-serif;
-      font-weight: $regular;
-      border-radius: 20px;
-      border: none;
-
-
-  }
+@mixin btn {
+    padding: 6px 6px;
+    appearance: none;
+    font-family: 'Heebo', sans-serif;
+    font-weight: $regular;
+    border-radius: 20px;
+    border: none;
 
 
+}
 
-  * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      color: $font;
-  }
+@mixin inputCheckbox($size){
+        appearance: none;
+        cursor: pointer;
+        width: $size;
+        height: $size;
+        border: 2px solid $fontForm;
+        border-radius: 3px;
+        background-color: #d4d1ee;
 
-  body {
-      background-color: $background;
-      font-family: 'Heebo', sans-serif;
-      font-weight: $regular;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
+        background-position: center;
+        background-size: cover;
 
-      //HEADER
-      header {
-          padding: $bordesApp;
-          display: flex;
-          align-items: center;
-          background-color: #dfdcfe;
-          border-bottom: 1px solid #d5d4e7;
-          @include shadow();
+        &:checked {
+            appearance: none;
+            border: 2px solid $primary;
+            background-color: $primary;
+            background-image: url(/assets/icons8-marca-de-verificación-64.png);
+        }
+}
 
-          .icono-koala {
-              width: 30px;
-              height: 30px;
-              margin-right: 7px;
-          }
 
-          h1 {
-              font-size: larger;
-              color: $primary;
-          }
-      }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-      //MAIN 
-      main {
-          margin: $bordesApp;
-          margin-top: 40px;
-          display: flex;
-          flex-direction: column;
-          flex-grow: 1;
+body {
+    background-color: $background;
+    font-family: 'Heebo', sans-serif;
+    font-weight: $regular;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 
-          //FORM DE BÚSQUEDA
-          .contenedor-search {
-              margin-left: 20px;
-              margin-right: 20px;
-              position: relative;
-              top: 0;
-              left: 0;
+    //HEADER
+    header {
+        padding: $bordesApp;
+        display: flex;
+        align-items: center;
+        background-color: #dfdcfe;
+        border-bottom: 1px solid #d5d4e7;
+        @include shadow();
 
-              #input-search {
-                  @include inputText();
-                  background-color: $primaryLighter;
-              }
+        .icono-koala {
+            width: 30px;
+            height: 30px;
+            margin-right: 7px;
+        }
 
-              .search-button-icon {
-                  position: absolute;
-                  top: 0;
-                  right: 0;
-                  margin-right: 10px;
-                  width: 20px;
-                  height: 100%;
-                  border: none;
-                  background: url(/assets/icons8-búsqueda-30.png);
-                  background-position: center;
-                  background-size: contain;
-                  background-repeat: no-repeat;
-              }
+        h1 {
+            font-size: larger;
+            color: $primary;
+        }
+    }
 
-          }
+    //MAIN 
+    main {
+        margin: $bordesApp;
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
 
-          .contenedor-scroll {
-              flex-grow: 1;
-              position: relative;
+        //FORM DE BÚSQUEDA
+        .form-search {
+            margin-left: 20px;
+            margin-right: 20px;
+            position: relative;
+            top: 0;
+            left: 0;
 
-              #contenedor-notas {
-                  position: absolute;
-                  height: 100%;
-                  width: 100%;
-                  overflow-y: scroll;
-                  display: flex;
-                  flex-direction: column;
-                  gap: 12px;
+            #input-search {
+                @include inputText();
+                background-color: $primaryLighter;
+            }
 
-                  .note {
-                      background-color: $primaryLighter;
-                      border-radius: $bordesApp;
-                      padding: $bordesApp;
+            .search-button-icon {
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin-right: 10px;
+                width: 20px;
+                height: 100%;
+                border: none;
+                background: url(/assets/icons8-búsqueda-30.png);
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
 
-                      h2 {
-                          color: $primary;
-                      }
+        }
+        //FILTRO COMPLETADOS
+        .filters{
+            display: flex;
+            margin: 6px 0 15px 23px;
+            margin: 6px 23px 15px auto;
+            align-items: center;
+            p {
+                margin-right: 6px;
+                color: $fontDisabled;
+                font-size: small;
+            }
+            [type="checkbox"]{
+                @include inputCheckbox(15px)
+            }
+        }
+        //SCROLL DE NOTAS
+        .contenedor-scroll-notas {
+            flex-grow: 1;
+            position: relative;
 
-                      p {
-                          color: $fontDisabled;
-                      }
+            #contenedor-notas {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                overflow-y: scroll;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
 
-                      div {
-                          display: flex;
-                          justify-content: space-between;
-                          align-items: center;
-                      }
-
-                      input[type="checkbox"] {
-                          appearance: none;
-                          cursor: pointer;
-                          width: 20px;
-                          height: 20px;
-                          border: 2px solid $fontForm;
-                          border-radius: 3px;
-                          background-color: #d4d1ee;
-                          
-                          background-position: center;
-                          background-size: cover;
-                          &:checked{
-                            border: 2px solid $primary;
-                            background-color: $primary;
-                            background-image: url(/assets/icons8-marca-de-verificación-64.png);
-                          }
-                      }
-
-                      //cuando la nota está CHECKEADA(Terminada)
-                      &[data-checked="true"][data-editable="false"]{
-                        background-color: $primaryLight;
-                        h2, p{
-                            text-decoration: line-through;
-                          }
-                          h2{
+                .note {
+                    word-wrap: break-word;
+                    background-color: $primaryLighter;
+                    border-radius: $bordesApp;
+                    padding: $bordesApp;
+                    div {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        h2 {
                             color: $primary;
-                          }
-                      }
-                      //cuando la nota es EDITABLE
-                      &[data-editable="true"]{
+                        }
+                        input[type="checkbox"] {
+                            @include inputCheckbox(20px);
+                        }
+                    }
+                    p {
+                        margin-top: 6px;
+                        color: $fontDisabled;
+                    }
+
+                    //cuando la nota está CHECKEADA(Terminada)
+                    &[data-checked="true"][data-editable="false"] {
+                        background-color: $primaryLight;
+
+                        h2,
+                        p {
+                            text-decoration: line-through;
+                        }
+
+                        h2 {
+                            color: $primary;
+                        }
+                    }
+
+                    //cuando la nota es EDITABLE
+                    &[data-editable="true"] {
                         display: flex;
                         flex-direction: column;
                         gap: 6px;
                         background-color: $primaryLight;
-                        [type="text"], textarea {
+
+                        [type="text"],
+                        textarea {
                             @include inputText();
                             background-color: $primaryLighter;
                             color: $font;
-              
+
                             &.title {
                                 font-size: smaller;
                                 font-weight: $semibold;
                             }
-              
+
                             &.content {
                                 font-size: smaller;
                                 font-weight: $regular;
                                 color: $fontLabel;
                             }
                         }
-                        div.buttons{
+
+                        div.buttons {
                             margin-top: 6px;
-                            button{
+
+                            button {
                                 @include btn();
                                 display: flex;
                                 gap: 6px;
                                 padding: 6px 12px;
                                 align-items: center;
-                                p{
+
+                                p {
                                     color: white;
                                 }
+
                                 //los iconos
-                                span.icon{
+                                span.icon {
                                     display: block;
                                     width: 20px;
                                     height: 20px;
                                     background-position: center;
                                     background-size: contain;
 
-                                    &.remove{
+                                    &.remove {
                                         background-image: url(assets/icons8-basura-32\ \(1\).png);
                                     }
-                                    &.save{
+
+                                    &.save {
                                         background-image: url(assets/icons8-guardar-32.png);
                                     }
-                                    &.cancel{
+
+                                    &.cancel {
                                         background-image: url(assets/icons8-multiplicar-32\ \(1\).png);
                                     }
                                 }
+
                                 //especificaciones de cada botón
-                                &.remove{
+                                &.remove {
                                     background-color: $danger;
                                 }
-                                &.save{
+
+                                &.save {
                                     background-color: $primary;
                                 }
-                                &.cancel{
+
+                                &.cancel {
                                     background-color: $primaryLighter;
-                                    p{
+
+                                    p {
                                         color: $primary;
                                         font-weight: $semibold;
                                     }
                                 }
                             }
                         }
-                      }
-                  }
-              }
-          }
+                    }
+                }
+            }
+        }
 
-          //BOTÓN NUEVO
-          #btn-flotante-crear {
-              position: absolute;
-              bottom: 20px;
-              right: 20px;
-              @include btn();
-              width: 60px;
-              height: 60px;
-              border-radius: 60px;
-              background: url(/assets/icons8-más-48.png);
-              background-color: $primary;
-              background-position: center;
-              background-size: contain;
-              background-repeat: no-repeat;
-              @include shadow();
+        //BOTÓN flotante CREAR
+        #btn-flotante-crear {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            @include btn();
+            width: 60px;
+            height: 60px;
+            border-radius: 60px;
+            background: url(/assets/icons8-más-32.png);
+            background-color: $primary;
+            background-position: center;
+            background-size: 30px;
+            background-repeat: no-repeat;
+            @include shadow();
 
-              &.disabled {
-                  display: none;
-              }
-          }
-      }
+            &.disabled {
+                display: none;
+            }
+        }
+    }
 
-      //BOTTOM SHEET
-      #bottom-sheet {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          background-color: $primaryLight;
-          border-radius: 12px 12px 0 0;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          padding: 20px;
-          gap: 10px;
+    //BOTTOM SHEET
+    #bottom-sheet {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: $primaryLight;
+        border-radius: 12px 12px 0 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        gap: 10px;
 
-          &>* {
-              appearance: none;
-          }
+        &>* {
+            appearance: none;
+        }
 
-          .icon-close {
-              width: 20px;
-              height: 20px;
-              margin-left: auto;
-              background: url(/assets/icons8-cerrar-30.png);
-              background-position: center;
-              background-size: contain
-          }
+        .icon-close {
+            width: 20px;
+            height: 20px;
+            margin-left: auto;
+            background: url(/assets/icons8-multiplicar-32\ \(1\).png);
+            background-position: center;
+            background-size: contain
+        }
 
-          [type="text"], textarea{
-              @include inputText();
-              background-color: $primaryLighter;
-              color: $font;
+        [type="text"],
+        textarea {
+            @include inputText();
+            background-color: $primaryLighter;
+            color: $font;
 
-              &#input-create-note-title {
-                  font-size: smaller;
-                  font-weight: $semibold;
-              }
+            &#input-create-note-title {
+                font-size: smaller;
+                font-weight: $semibold;
+            }
 
-              &#input-create-note-content {
-                  font-size: smaller;
-                  font-weight: $regular;
-                  color: $fontLabel;
-              }
-          }
+            &#input-create-note-content {
+                font-size: smaller;
+                font-weight: $regular;
+                color: $fontLabel;
+            }
+        }
 
-          #btn-create-new {
-              @include btn();
-              display: flex;
-              background-color: $primary;
-              color: white;
-              width: max-content;
-              padding-left: 15px;
-              padding-right: 15px;
+        #btn-create-new {
+            @include btn();
+            display: flex;
+            background-color: $primary;
+            color: white;
+            width: max-content;
+            padding-left: 15px;
+            padding-right: 15px;
 
-              .icon-crear {
-                  width: 20px;
-                  height: 20px;
-                  background-color: white;
-                  background: url(/assets/icons8-más-48.png);
-                  background-position: center;
-                  background-size: contain;
-              }
-          }
+            .icon-crear {
+                width: 20px;
+                height: 20px;
+                background-color: white;
+                background: url(/assets/icons8-más-48.png);
+                background-position: center;
+                background-size: contain;
+            }
+        }
 
-          &.disabled {
-              display: none;
-          }
-      }
-  }
+        &.disabled {
+            display: none;
+        }
+    }
+}
 
-  .disabled {
-      display: none;
-  }
+.disabled {
+    display: none;
+}
