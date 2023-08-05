@@ -39,15 +39,20 @@ body main {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  margin-bottom: 50px;
 }
 body main .form-search {
+  display: flex;
+  flex-direction: column;
+}
+body main .form-search .contenedor-search {
   margin-left: 20px;
   margin-right: 20px;
   position: relative;
   top: 0;
   left: 0;
 }
-body main .form-search #input-search {
+body main .form-search .contenedor-search #input-search {
   appearance: none;
   width: 100%;
   border: none;
@@ -57,11 +62,11 @@ body main .form-search #input-search {
   color: #201d3a;
   background-color: #dfdcfe;
 }
-body main .form-search #input-search::placeholder {
+body main .form-search .contenedor-search #input-search::placeholder {
   font-style: italic;
   color: #aaa6c4;
 }
-body main .form-search .search-button-icon {
+body main .form-search .contenedor-search .search-button-icon {
   position: absolute;
   top: 0;
   right: 0;
@@ -69,23 +74,22 @@ body main .form-search .search-button-icon {
   width: 20px;
   height: 100%;
   border: none;
-  background: url(/assets/icons8-búsqueda-30.png);
+  background: url(/assets/icons8-búsqueda-32.png);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
 }
-body main .filters {
+body main .form-search .filters {
   display: flex;
-  margin: 6px 0 15px 23px;
   margin: 6px 23px 15px auto;
   align-items: center;
 }
-body main .filters p {
+body main .form-search .filters p {
   margin-right: 6px;
   color: #464453;
   font-size: small;
 }
-body main .filters [type=checkbox] {
+body main .form-search .filters [type=checkbox] {
   appearance: none;
   cursor: pointer;
   width: 15px;
@@ -96,7 +100,7 @@ body main .filters [type=checkbox] {
   background-position: center;
   background-size: cover;
 }
-body main .filters [type=checkbox]:checked {
+body main .form-search .filters [type=checkbox]:checked {
   appearance: none;
   border: 2px solid #8B80EF;
   background-color: #8B80EF;
@@ -211,6 +215,7 @@ body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] d
 }
 body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] div.buttons button p {
   color: white;
+  margin: 0;
 }
 body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] div.buttons button span.icon {
   display: block;
@@ -251,8 +256,8 @@ body main #btn-flotante-crear {
   font-weight: 400;
   border-radius: 20px;
   border: none;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 60px;
   background: url(/assets/icons8-más-32.png);
   background-color: #8B80EF;
@@ -331,12 +336,14 @@ body #bottom-sheet #btn-create-new {
   width: max-content;
   padding-left: 15px;
   padding-right: 15px;
+  align-items: center;
 }
 body #bottom-sheet #btn-create-new .icon-crear {
-  width: 20px;
-  height: 20px;
+  margin-left: 6px;
+  width: 15px;
+  height: 15px;
   background-color: white;
-  background: url(/assets/icons8-más-48.png);
+  background: url(/assets/icons8-más-32.png);
   background-position: center;
   background-size: contain;
 }

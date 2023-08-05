@@ -19,13 +19,16 @@
     <main>
         <!-- Buscador -->
         <form id="search" class="form-search">
-            <input type="text" id="input-search" placeholder="buscar">
+            <div class="contenedor-search">
+                <input type="text" id="input-search" placeholder="buscar">
             <button type="submit" class="search-button-icon"></button>
+            </div>
+            <div class="filters">
+                <p>Solo completados</p>
+                <input type="checkbox" id="checkbox-search">
+            </div>
         </form>
-        <div class="filters">
-            <p>Solo completados</p>
-            <input type="checkbox" id="checkbox-search">
-        </div>
+        
         <!--contenedor Notas-->
         <div class="contenedor-scroll-notas">
             <div id="contenedor-notas">

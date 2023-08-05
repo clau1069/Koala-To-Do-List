@@ -79,6 +79,7 @@ function createNewNote(e) {
         createNewNoteVisually(lastNoteId, newNoteTitle, newNoteContent)
         closeBottomSheet()
     }
+    
     return;
 
 }
@@ -133,9 +134,10 @@ function convertToEditable(noteHTML, noteId) {
 }
 //TO NO EDITABLE
 function convertToNoEditable(noteHTML, idNote) {
-    const title = noteHTML.querySelector(".title").value
-    const content = noteHTML.querySelector(".content").value
-    const checked = noteHTML.getAttribute('data-checked')
+    noteObject = JSON.parse(localStorage.getItem(idNote))
+    const title = noteObject.title
+    const content = noteObject.content
+    const checked = noteObject.checked
     noteHTML.outerHTML = newNoteHTML(idNote, title, content, checked)
 }
 
