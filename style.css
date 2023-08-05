@@ -153,6 +153,7 @@ body main .contenedor-scroll-notas #contenedor-notas .note div input[type=checkb
 body main .contenedor-scroll-notas #contenedor-notas .note p {
   margin-top: 6px;
   color: #464453;
+  white-space: pre-line;
 }
 body main .contenedor-scroll-notas #contenedor-notas .note[data-checked=true][data-editable=false] {
   background-color: #B6B0FB;

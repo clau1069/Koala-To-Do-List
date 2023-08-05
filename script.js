@@ -5,7 +5,6 @@
 - Los filtros tienen que funcionar combinados.
 - Las notas tienen que persistir al recargar la página ( localStorage) */
 
-
 //DOM
 const btnCreateNew = document.getElementById("btn-create-new")
 const inputCreateNoteTitle = document.getElementById("input-create-note-title")
@@ -25,6 +24,14 @@ let localStorageKeys = Object.keys(localStorage).sort(function (a, b) {
 })
 let lastNoteId = localStorageKeys[localStorageKeys.length - 1] || 0
 
+// Notas Precargadas
+saveInLocalStorage ("Ideas para el blog", "Escribir sobre consejos de productividad, reseñas de libros y tutoriales de diseño gráfico.")
+saveInLocalStorage ("Películas para ver", "Anotar 'The Shawshank Redemption', 'Inception' y 'La La Land' en la lista de películas pendientes.")
+saveInLocalStorage ("Tareas pendientes", " - Responder correos electrónicos\n- Terminar el informe del proyecto\n- Preparar la reunión con el cliente\n- Actualizar el calendario de eventos")
+saveInLocalStorage ("Ideas para el proyecto", "- Investigar tecnologías\n- Diseñar la interfaz de usuario\n- Planificar la arquitectura del sistema\n- Definir las funcionalidades principales")
+
+
+
 //EVENTOS
 document.addEventListener("DOMContentLoaded", loadNotes())
 
@@ -35,6 +42,7 @@ formSearch.addEventListener("input", filterNotes)
 closeBtn.addEventListener("click", closeBottomSheet)
 floatingBtnCreate.addEventListener("click", revealBottomSheet)
 inputCreateNoteContent.addEventListener("input", autoResizeTextarea)
+inputCreateNoteTitle.addEventListener("keydown", writeDescription)
 
 
 
@@ -67,6 +75,13 @@ function revealBottomSheet() {
     inputCreateNoteContent.value = ""
     bottomSheetForm.classList.remove("disabled")
     floatingBtnCreate.classList.add("disabled")
+    inputCreateNoteTitle.focus()
+}
+function writeDescription(e) {
+    if (e.key === "Enter") {
+        e.preventDefault()
+        inputCreateNoteContent.focus()
+    }
 }
 function createNewNote(e) {
     console.log(createNewNote);
@@ -79,7 +94,7 @@ function createNewNote(e) {
         createNewNoteVisually(lastNoteId, newNoteTitle, newNoteContent)
         closeBottomSheet()
     }
-    
+
     return;
 
 }
@@ -247,14 +262,15 @@ function newNoteHTMLEditable(noteId, title, content, checked) {
                             <p>Borrar</p>
                             <span class="icon remove"></span>
                         </button>
-                        <button class="btn save">
-                            <p>Guardar</p>
-                            <span class="icon save"></span>
-                        </button>
                         <button class="btn cancel">
                             <p>Cancelar</p>
                             <span class="icon cancel"></span>
                         </button>
+                        <button class="btn save">
+                            <p>Guardar</p>
+                            <span class="icon save"></span>
+                        </button>
+                        
             </div>
         </div>
         `
@@ -273,15 +289,15 @@ function getNoteOfLocalStorage(idNote) {
 }
 function autoResizeTextarea(e) {
     let textarea;
-    if(e != null && e.target.nodeName== "TEXTAREA"){
-            textarea= e.target
-    }else {
-        textarea= document.getElementById("textarea-editable-note")
+    if (e != null && e.target.nodeName == "TEXTAREA") {
+        textarea = e.target
+    } else {
+        textarea = document.getElementById("textarea-editable-note")
         console.log(textarea);
-}
+    }
     textarea.style.height = 'auto';
     textarea.style.height = textarea.scrollHeight + 'px';
-    
+
 }
 //por un lado reasigna el heigth de un textarea. El textarea lo saca del target del evento (solo funciona cuando hay un evento)
 //por otro lado reasigna el heigth de un textarea, con un textarea que saca no del evento, sino buscandolo en el DOM
