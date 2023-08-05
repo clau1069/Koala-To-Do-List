@@ -74,7 +74,7 @@ body main .form-search .contenedor-search .search-button-icon {
   width: 20px;
   height: 100%;
   border: none;
-  background: url(/assets/icons8-búsqueda-32.png);
+  background: url(../assets/icons8-búsqueda-32.png);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -104,7 +104,7 @@ body main .form-search .filters [type=checkbox]:checked {
   appearance: none;
   border: 2px solid #8B80EF;
   background-color: #8B80EF;
-  background-image: url(/assets/icons8-marca-de-verificación-64.png);
+  background-image: url(../assets/icons8-marca-de-verificación-64.png);
 }
 body main .contenedor-scroll-notas {
   flex-grow: 1;
@@ -148,7 +148,7 @@ body main .contenedor-scroll-notas #contenedor-notas .note div input[type=checkb
   appearance: none;
   border: 2px solid #8B80EF;
   background-color: #8B80EF;
-  background-image: url(/assets/icons8-marca-de-verificación-64.png);
+  background-image: url(../assets/icons8-marca-de-verificación-64.png);
 }
 body main .contenedor-scroll-notas #contenedor-notas .note p {
   margin-top: 6px;
@@ -226,13 +226,13 @@ body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] d
   background-size: contain;
 }
 body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] div.buttons button span.icon.remove {
-  background-image: url(assets/icons8-basura-32\ \(1\).png);
+  background-image: url(../assets/icons8-basura-32\ \(1\).png);
 }
 body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] div.buttons button span.icon.save {
-  background-image: url(assets/icons8-guardar-32.png);
+  background-image: url(../assets/icons8-guardar-32.png);
 }
 body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] div.buttons button span.icon.cancel {
-  background-image: url(assets/icons8-multiplicar-32\ \(1\).png);
+  background-image: url(../assets/icons8-multiplicar-32\ \(1\).png);
 }
 body main .contenedor-scroll-notas #contenedor-notas .note[data-editable=true] div.buttons button.remove {
   background-color: #ff8a8a;
@@ -260,7 +260,7 @@ body main #btn-flotante-crear {
   width: 50px;
   height: 50px;
   border-radius: 60px;
-  background: url(/assets/icons8-más-32.png);
+  background: url(../assets/icons8-más-32.png);
   background-color: #8B80EF;
   background-position: center;
   background-size: 30px;
@@ -292,7 +292,7 @@ body #bottom-sheet .icon-close {
   width: 20px;
   height: 20px;
   margin-left: auto;
-  background: url(/assets/icons8-multiplicar-32\ \(1\).png);
+  background: url(../assets/icons8-multiplicar-32\ \(1\).png);
   background-position: center;
   background-size: contain;
 }
@@ -344,7 +344,7 @@ body #bottom-sheet #btn-create-new .icon-crear {
   width: 15px;
   height: 15px;
   background-color: white;
-  background: url(/assets/icons8-más-32.png);
+  background: url(../assets/icons8-más-32.png);
   background-position: center;
   background-size: contain;
 }
